@@ -96,9 +96,11 @@ function createHeatmap(data) {
 
     // Add x-axis
     svg.append("g")
-        .attr("id", "x-axis")
-        .attr("transform", `translate(0,${height})`)
-        .call(d3.axisBottom(x).tickFormat(d3.format('d')));
+    .attr("id", "x-axis")
+    .attr("transform", `translate(0,${height})`)
+    .call(d3.axisBottom(x)
+        .tickFormat(d3.format('d'))
+        .tickValues(x.domain().filter(year => year % 10 === 0))); // Show only multiples of 10
 
     // Add y-axis
     svg.append("g")
